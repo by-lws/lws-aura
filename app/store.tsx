@@ -136,11 +136,7 @@ export function RunawayBottle() {
 
   return (
     <div ref={runner} className="runner" aria-hidden="true">
-      <div className="runner-bob">
-        <span className="bottle-slice bottle-cap"><img src="/assets/bottle-cutout.png" alt="" /></span>
-        <span className="bottle-slice bottle-neck"><img src="/assets/bottle-cutout.png" alt="" /></span>
-        <span className="bottle-slice bottle-body"><img src="/assets/bottle-cutout.png" alt="" /></span>
-      </div>
+      <img className="runner-bob" src="/assets/bottle-cutout.png" alt="" />
     </div>
   );
 }

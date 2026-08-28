@@ -164,15 +164,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   will-change: transform;
   transition: transform .72s cubic-bezier(.15,.85,.25,1);
 }
-.runner-bob { position: relative; width: 100%; height: 100%; animation: bob 2.8s ease-in-out infinite; }
-.bottle-slice { position: absolute; overflow: hidden; display: block; }
-.bottle-slice img { position: absolute; width: 104px; height: 156px; max-width: none; }
-.bottle-cap { left: 28%; top: 8%; width: 48%; height: 25%; border-radius: 11%; }
-.bottle-cap img { left: -29px; top: -12px; }
-.bottle-neck { left: 40%; top: 32%; width: 27%; height: 8%; }
-.bottle-neck img { left: -42px; top: -50px; }
-.bottle-body { left: 19%; top: 38%; width: 64%; height: 57%; border-radius: 12% 12% 16% 16% / 5% 5% 8% 8%; }
-.bottle-body img { left: -20px; top: -59px; }
+.runner-bob {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,.16));
+  animation: bob 2.8s ease-in-out infinite;
+}
 @keyframes bob { 50% { transform: translateY(-8px) rotate(1.8deg); } }
 
 .inner {
@@ -319,10 +318,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .box-switch { width: 58vw; height: 48svh; }
   .hover-note { right: 4px; bottom: 15%; }
   .runner { width: 78px; height: 117px; }
-  .bottle-slice img { width: 78px; height: 117px; }
-  .bottle-cap img { left: -22px; top: -9px; }
-  .bottle-neck img { left: -31px; top: -37px; }
-  .bottle-body img { left: -15px; top: -44px; }
   .product-layout, .utility-wrap, .checkout-layout { display: block; }
   .product-layout > .product-stage { min-height: 54svh; border-right: 0; border-bottom: 1px solid var(--ink); }
   .product-layout > .product-stage .box-switch { width: 64vw; height: 52svh; }
