@@ -33,12 +33,17 @@ export function useStore() {
   }, []);
 
   const commit = (change: (current: CartLine[]) => CartLine[]) => {
-    setLines((current) => {
-      const next = change(current);
-      window.localStorage.setItem('lws-aura-cart', JSON.stringify(next));
-      window.dispatchEvent(new CustomEvent('lws-cart', { detail: next }));
-      return next;
-    });
+    let current = lines;
+    try {
+      const saved = window.localStorage.getItem('lws-aura-cart');
+      if (saved) current = JSON.parse(saved) as CartLine[];
+    } catch {
+      window.localStorage.removeItem('lws-aura-cart');
+    }
+    const next = change(current);
+    window.localStorage.setItem('lws-aura-cart', JSON.stringify(next));
+    setLines(next);
+    window.dispatchEvent(new CustomEvent('lws-cart', { detail: next }));
   };
 
   const add = (size: string) => {
