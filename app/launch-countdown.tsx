@@ -29,7 +29,7 @@ export function LaunchCountdown({ className = '' }: { className?: string }) {
 
   return (
     <section className={`launch-countdown ${className}`.trim()} aria-label={`До начала получения парфюма ${DELIVERY_START_LABEL}`}>
-      <p className="launch-countdown-title">ПОЛУЧЕНИЕ С {DELIVERY_START_LABEL} · ПРЕДЗАКАЗ ОТКРЫТ</p>
+      <p className="launch-countdown-title">ПОЛУЧЕНИЕ С {DELIVERY_START_LABEL} · ПРЕДЗАКАЗ</p>
       <div className="launch-countdown-numbers" role="timer" aria-live="off">
         <span><b>{now === null ? '—' : String(days).padStart(3, '0')}</b><small>ДНЕЙ</small></span>
         <span><b>{now === null ? '—' : String(hours).padStart(2, '0')}</b><small>ЧАСОВ</small></span>

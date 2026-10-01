@@ -24,7 +24,7 @@ export default function CheckoutPage() {
           <h1 id="checkout-title">ОФОРМЛЕНИЕ</h1>
           <p className="checkout-note">
             {salesOpen
-              ? 'Предзаказ уже открыт. Онлайн-оплата появится после проверки отдельного магазина LWS Aura в ЮKassa.'
+              ? 'Аромат для предзаказа уже можно выбрать. Онлайн-оплата появится после проверки отдельного магазина LWS Aura в ЮKassa.'
               : 'Продажи ещё не открыты.'}
           </p>
           <LaunchCountdown className="checkout-countdown" />

@@ -15,7 +15,7 @@ export default function Home() {
           <p className="hero-line">Сначала обжигает.<br />Потом остаётся с тобой.</p>
           <LaunchCountdown className="hero-countdown" />
           <Link className="primary-link" href="/product">
-            ОФОРМИТЬ ПРЕДЗАКАЗ <span aria-hidden="true">↘</span>
+            ВЫБРАТЬ АРОМАТ <span aria-hidden="true">↘</span>
           </Link>
         </div>
         <BoxSwitch />
