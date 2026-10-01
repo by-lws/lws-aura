@@ -55,7 +55,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .masthead nav a { border-bottom: 1px solid transparent; padding-bottom: 4px; }
 .masthead nav a:hover, .masthead nav a:focus-visible { border-color: currentColor; }
 .masthead nav a[aria-current='page'] { border-color: currentColor; }
-.mobile-nav { display: none; }
+.masthead .mobile-nav { display: none; }
 .masthead-light { color: #fff; mix-blend-mode: normal; }
 
 .hero {
