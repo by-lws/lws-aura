@@ -48,6 +48,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   pointer-events: none;
 }
 .inner > section { position: relative; z-index: 1; }
+.product-page::before { top: 30px; z-index: 2; height: clamp(96px, 10vw, 136px); }
 .story-page::before { filter: invert(1); opacity: .45; }
 
 .masthead {
@@ -58,17 +59,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   justify-content: space-between;
   padding: 22px 28px;
   color: #fff;
+  mix-blend-mode: difference;
 }
-.wordmark { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; white-space: nowrap; }
-.logo-mark { display: block; width: 52px; height: 46px; overflow: hidden; background: #050505; }
-.logo-mark img { display: block; width: 100%; height: 100%; object-fit: cover; filter: invert(1); transform: scale(1.66); }
-.wordmark-aura { font-size: 10px; letter-spacing: .18em; font-weight: 400; }
+.wordmark { font-weight: 900; font-size: 24px; letter-spacing: -.08em; white-space: nowrap; }
+.wordmark span { margin-left: 7px; font-size: 10px; letter-spacing: .18em; font-weight: 400; }
 .masthead nav { display: flex; flex-wrap: nowrap; gap: 32px; font-size: 10px; letter-spacing: .16em; white-space: nowrap; }
 .masthead nav a { border-bottom: 1px solid transparent; padding-bottom: 4px; }
 .masthead nav a:hover, .masthead nav a:focus-visible { border-color: currentColor; }
 .masthead nav a[aria-current='page'] { border-color: currentColor; }
 .masthead .mobile-nav { display: none; }
-.masthead-light { color: #fff; }
+.masthead-light { color: #fff; mix-blend-mode: normal; }
+.product-page .masthead { background: #090909; mix-blend-mode: normal; }
 
 .hero {
   position: relative;
@@ -351,9 +352,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     padding: calc(14px + env(safe-area-inset-top)) 16px 12px;
   }
   .product-page .masthead, .utility-page .masthead, .story-page .masthead { color: #fff; }
-  .wordmark { gap: 5px; min-height: 42px; }
-  .logo-mark { width: 44px; height: 42px; }
-  .wordmark-aura { font-size: 8px; letter-spacing: .12em; }
+  .wordmark { font-size: 22px; }
+  .wordmark span { margin-left: 5px; font-size: 8px; letter-spacing: .12em; }
+  .product-page::before { height: 112px; }
   .masthead .desktop-nav { display: none; }
   .masthead .mobile-nav {
     display: grid;
