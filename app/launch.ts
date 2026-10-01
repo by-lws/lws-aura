@@ -1,5 +1,8 @@
 // Sales are live. Keep the switch explicit so a future collection can be gated again safely.
 export const SALES_ARE_LIVE = true;
+export const DELIVERY_START_AT = '2027-02-20T00:00:00+03:00';
+export const DELIVERY_START_LABEL = '20.02.2027';
+export const DELIVERY_START_TIMESTAMP = Date.parse(DELIVERY_START_AT);
 
 export const productSizes = ['30 мл', '50 мл', '100 мл'] as const;
 export type ProductSize = (typeof productSizes)[number];

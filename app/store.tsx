@@ -79,7 +79,8 @@ export function Header({ light = false }: { light?: boolean }) {
   return (
     <header className={`masthead ${light ? 'masthead-light' : ''}`}>
       <Link className="wordmark" href="/" aria-label="LWS Aura — на главную">
-        LWS <span>AURA</span>
+        <span className="logo-mark"><img src="/assets/lws-logo.jpg" alt="" /></span>
+        <span className="wordmark-aura">AURA</span>
       </Link>
       <nav className="desktop-nav" aria-label="Основная навигация">
         <Link href="/product" aria-current={current('/product')}>АРОМАТ</Link>

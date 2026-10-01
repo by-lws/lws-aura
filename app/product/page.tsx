@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LaunchCountdown } from '../launch-countdown';
 import { formatPrice, productSizes, productVariants, type ProductSize } from '../launch';
@@ -8,14 +9,13 @@ import { BoxSwitch, Header, RunawayBottle, useStore } from '../store';
 
 export default function ProductPage() {
   const [size, setSize] = useState<ProductSize>('50 мл');
-  const [added, setAdded] = useState(false);
   const { add } = useStore();
+  const router = useRouter();
   const selectedVariant = productVariants[size];
 
   const addProduct = () => {
     add(size);
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1800);
+    router.push('/cart');
   };
 
   return (
@@ -49,7 +49,7 @@ export default function ProductPage() {
           </div>
           <LaunchCountdown className="product-countdown" />
           <button className="black-button" type="button" onClick={addProduct}>
-            {added ? 'ДОБАВЛЕНО ✓' : 'ДОБАВИТЬ В КОРЗИНУ'}
+            ДОБАВИТЬ В КОРЗИНУ
           </button>
           <Link className="quiet-link" href="/story">ПОЧЕМУ ТАК ПАХНЕТ? →</Link>
         </div>

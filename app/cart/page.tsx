@@ -10,7 +10,7 @@ export default function CartPage() {
   const total = lines.reduce((sum, line) => sum + productVariants[line.size].price * line.quantity, 0);
 
   return (
-    <main className="inner utility-page">
+    <main className="inner utility-page cart-page">
       <Header />
       <section className="utility-wrap" aria-labelledby="cart-title">
         <div className="utility-heading">

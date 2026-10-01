@@ -38,6 +38,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   opacity: .98;
   pointer-events: none;
 }
+.inner::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: clamp(120px, 17vw, 210px);
+  background: url('/assets/drip-strip.png') top center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.inner > section { position: relative; z-index: 1; }
+.story-page::before { filter: invert(1); opacity: .45; }
 
 .masthead {
   position: relative;
@@ -47,16 +58,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   justify-content: space-between;
   padding: 22px 28px;
   color: #fff;
-  mix-blend-mode: difference;
 }
-.wordmark { font-weight: 900; font-size: 24px; letter-spacing: -.08em; }
-.wordmark span { margin-left: 7px; font-size: 10px; letter-spacing: .18em; font-weight: 400; }
-.masthead nav { display: flex; gap: 32px; font-size: 10px; letter-spacing: .16em; }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; white-space: nowrap; }
+.logo-mark { display: block; width: 52px; height: 46px; overflow: hidden; background: #050505; }
+.logo-mark img { display: block; width: 100%; height: 100%; object-fit: cover; filter: invert(1); transform: scale(1.66); }
+.wordmark-aura { font-size: 10px; letter-spacing: .18em; font-weight: 400; }
+.masthead nav { display: flex; flex-wrap: nowrap; gap: 32px; font-size: 10px; letter-spacing: .16em; white-space: nowrap; }
 .masthead nav a { border-bottom: 1px solid transparent; padding-bottom: 4px; }
 .masthead nav a:hover, .masthead nav a:focus-visible { border-color: currentColor; }
 .masthead nav a[aria-current='page'] { border-color: currentColor; }
 .masthead .mobile-nav { display: none; }
-.masthead-light { color: #fff; mix-blend-mode: normal; }
+.masthead-light { color: #fff; }
 
 .hero {
   position: relative;
@@ -165,8 +177,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: 10px;
   letter-spacing: .18em;
 }
-.ticker span { min-width: max-content; padding: 12px 0; animation: ticker 20s linear infinite; }
-@keyframes ticker { to { transform: translateX(-100%); } }
+.ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+.ticker-track span { display: block; flex: none; white-space: pre; padding: 12px 0; }
+@keyframes ticker { to { transform: translateX(-50%); } }
 
 .runner {
   position: fixed;
@@ -285,6 +298,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .utility-wrap, .checkout-layout { display: grid; grid-template-columns: minmax(320px, .72fr) minmax(480px, 1.28fr); min-height: calc(100svh - 68px); }
 .utility-heading { padding: clamp(54px, 10vh, 104px) clamp(28px, 6vw, 94px); border-right: 1px solid var(--ink); }
 .utility-heading h1 { margin: 22px 0; font-size: clamp(64px, 8vw, 132px); line-height: .76; letter-spacing: -.08em; overflow-wrap: anywhere; }
+.cart-page .utility-heading h1 { font-size: clamp(46px, 5.7vw, 82px); white-space: nowrap; overflow-wrap: normal; }
 .utility-heading h1 span { color: transparent; -webkit-text-stroke: 1px var(--ink); }
 .cart-content { padding: clamp(54px, 10vh, 104px) clamp(28px, 6vw, 94px); }
 .empty-state { min-height: 50vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; }
@@ -332,14 +346,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   html, body { overflow-x: hidden; }
   .home { min-height: 100svh; overflow-x: hidden; overflow-y: auto; }
   .home::before { height: 175px; background-size: 190% 100%; }
+  .inner::before { height: 155px; background-size: 195% 100%; }
   .masthead {
     align-items: center;
     padding: calc(14px + env(safe-area-inset-top)) 16px 12px;
-    mix-blend-mode: normal;
   }
-  .product-page .masthead, .utility-page .masthead { color: var(--ink); }
-  .story-page .masthead { color: #fff; }
-  .wordmark { font-size: 22px; }
+  .product-page .masthead, .utility-page .masthead, .story-page .masthead { color: #fff; }
+  .wordmark { gap: 5px; min-height: 42px; }
+  .logo-mark { width: 44px; height: 42px; }
+  .wordmark-aura { font-size: 8px; letter-spacing: .12em; }
   .masthead .desktop-nav { display: none; }
   .masthead .mobile-nav {
     display: grid;
@@ -370,10 +385,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     display: flex;
     min-height: auto;
     flex-direction: column;
-    padding: 46px 16px calc(72px + env(safe-area-inset-bottom));
+    align-items: center;
+    padding: 42px 16px calc(72px + env(safe-area-inset-bottom));
   }
-  .hero-copy { position: relative; z-index: 3; }
-  .hero h1 { font-size: clamp(64px, 22vw, 96px); line-height: .76; }
+  .hero-copy { position: relative; z-index: 3; display: flex; width: 100%; flex-direction: column; align-items: center; text-align: center; }
+  .hero h1 { width: 100%; font-size: clamp(58px, 20vw, 82px); line-height: .82; }
+  .hero h1::first-line { color: var(--ink); -webkit-text-stroke: 0; }
   .hero-line { margin: 20px 0 18px; }
   .primary-link { min-height: 44px; align-items: center; gap: 24px; font-size: 11px; }
   .hero-countdown { margin-bottom: 18px; }
@@ -382,7 +399,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     width: 100%;
     height: 42svh;
     min-height: 260px;
-    margin-top: -4px;
+    margin-top: 14px;
     justify-content: center;
   }
   .box-switch { width: min(72vw, 320px); height: 42svh; min-height: 260px; }
@@ -407,6 +424,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .quiet-link { max-width: 100%; line-height: 1.45; }
   .utility-heading { padding: 70px 16px 30px; border-right: 0; border-bottom: 1px solid var(--ink); }
   .utility-heading h1 { font-size: clamp(54px, 17vw, 76px); }
+  .cart-page .utility-heading h1 { font-size: clamp(44px, 12.5vw, 62px); }
   .checkout-layout .utility-heading h1 { font-size: clamp(42px, 15vw, 64px); overflow-wrap: normal; }
   .cart-content, .checkout-form { padding: 38px 16px 72px; }
   .cart-line { grid-template-columns: 62px minmax(0, 1fr); gap: 12px; }
@@ -436,8 +454,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .masthead .mobile-nav { width: 61vw; gap: 2px; }
   .masthead .mobile-nav a { font-size: 7px; letter-spacing: .06em; }
   .hero { padding-top: 38px; }
-  .hero h1 { font-size: clamp(60px, 21vw, 76px); }
-  .primary-link { width: 100%; justify-content: space-between; }
+  .hero h1 { font-size: 19vw; }
+  .primary-link { max-width: 100%; justify-content: space-between; }
 }
 
 @media (hover: none) {
