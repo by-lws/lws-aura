@@ -306,43 +306,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .masthead .desktop-nav { display: none; }
   .masthead .mobile-nav {
     display: grid;
-    position: fixed;
-    z-index: 50;
-    right: 10px;
-    bottom: calc(10px + env(safe-area-inset-bottom));
-    left: 10px;
-    width: auto;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.22);
-    background: #070707;
-    color: #fff;
-    box-shadow: 0 10px 32px rgba(0,0,0,.22);
-    mix-blend-mode: normal;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    width: min(58vw, 224px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    margin-left: auto;
+    color: inherit;
   }
+  .masthead .mobile-nav a:first-child { display: none; }
   .masthead .mobile-nav a {
     display: flex;
     min-width: 0;
-    min-height: 58px;
-    flex-direction: column;
+    min-height: 44px;
     align-items: center;
     justify-content: center;
-    gap: 6px;
     border: 0;
-    border-right: 1px solid rgba(255,255,255,.2);
-    padding: 8px 2px 7px;
+    border-bottom: 1px solid transparent;
+    padding: 0 2px;
     font-size: 8px;
     line-height: 1;
-    letter-spacing: .12em;
+    letter-spacing: .08em;
     white-space: nowrap;
   }
-  .masthead .mobile-nav a:last-child { border-right: 0; }
-  .masthead .mobile-nav a[aria-current='page'] { background: #fff; color: #070707; }
-  .masthead .mobile-nav small { font-size: 7px; line-height: 1; letter-spacing: .08em; opacity: .62; }
-  .ticker { bottom: calc(78px + env(safe-area-inset-bottom)); }
+  .masthead .mobile-nav a[aria-current='page'] { border-color: currentColor; }
+  .masthead .mobile-nav small { display: none; }
   .hero {
     display: flex;
     min-height: auto;
@@ -406,8 +392,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (max-width: 360px) {
-  .masthead .mobile-nav { right: 6px; left: 6px; bottom: calc(6px + env(safe-area-inset-bottom)); }
-  .masthead .mobile-nav a { min-height: 56px; font-size: 7px; letter-spacing: .08em; }
+  .masthead { padding-inline: 12px; }
+  .masthead .mobile-nav { width: 61vw; gap: 2px; }
+  .masthead .mobile-nav a { font-size: 7px; letter-spacing: .06em; }
   .hero { padding-top: 38px; }
   .hero h1 { font-size: clamp(60px, 21vw, 76px); }
   .primary-link { width: 100%; justify-content: space-between; }
