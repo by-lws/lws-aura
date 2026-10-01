@@ -28,7 +28,8 @@ function parseCart(body: unknown): CartLine[] | null {
   for (const item of (body as { lines: unknown[] }).lines) {
     if (!item || typeof item !== 'object') return null;
     const { size, quantity } = item as { size?: unknown; quantity?: unknown };
-    if (!productSizes.includes(size as ProductSize) || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) return null;
+    if (typeof size !== 'string' || !productSizes.includes(size as ProductSize)) return null;
+    if (typeof quantity !== 'number' || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) return null;
     lines.push({ size: size as ProductSize, quantity });
   }
 
