@@ -76,7 +76,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   display: grid;
   grid-template-columns: minmax(300px, .8fr) minmax(420px, 1.2fr);
   min-height: calc(100svh - 68px);
-  padding: clamp(36px, 8vh, 92px) clamp(28px, 6vw, 94px) 74px;
+  padding: clamp(36px, 8vh, 92px) clamp(28px, 6vw, 94px) 48px;
 }
 .hero-copy { position: relative; z-index: 2; align-self: center; }
 .issue { margin: 0 0 18px; font: 10px/1 Arial, sans-serif; letter-spacing: .24em; }
@@ -152,8 +152,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   opacity: 0;
   transform: translate(0.46%, 0.44%) scale(1.073, 1.034);
   mix-blend-mode: normal;
-  -webkit-mask-image: radial-gradient(circle clamp(82px, 11vw, 140px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
-  mask-image: radial-gradient(circle clamp(82px, 11vw, 140px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle clamp(68px, 9vw, 118px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
+  mask-image: radial-gradient(circle clamp(68px, 9vw, 118px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
   transition: opacity .25s ease;
 }
 .box-switch[data-revealed='true'] .box-empty { opacity: 1; }
@@ -166,31 +166,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   writing-mode: vertical-rl;
 }
 
-.ticker {
-  position: absolute;
-  z-index: 8;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  overflow: hidden;
-  border-top: 1px solid var(--ink);
-  background: var(--paper);
-  white-space: nowrap;
-  font-size: 10px;
-  letter-spacing: .18em;
-}
-.ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
-.ticker-track span { display: block; flex: none; white-space: pre; padding: 12px 0; }
-@keyframes ticker { to { transform: translateX(-50%); } }
-
 .runner {
   position: fixed;
   z-index: 7;
   top: 0;
   left: 0;
-  width: 104px;
-  height: 156px;
+  width: 82px;
+  height: 123px;
   pointer-events: none;
   will-change: transform;
   transition: transform .72s cubic-bezier(.15,.85,.25,1);
@@ -200,7 +182,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,.16));
+  filter: drop-shadow(0 16px 16px rgba(0,0,0,.3)) drop-shadow(0 3px 5px rgba(0,0,0,.2));
   animation: bob 2.8s ease-in-out infinite;
 }
 @keyframes bob { 50% { transform: translateY(-8px) rotate(1.8deg); } }
@@ -219,9 +201,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .product-layout > .product-stage {
   border-right: 1px solid var(--ink);
-  background:
-    linear-gradient(rgba(255,255,255,.78), rgba(232,231,226,.9)),
-    url('/assets/drip-wall.png') center / cover;
+  background: var(--paper);
 }
 .product-copy {
   position: relative;
@@ -410,7 +390,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
   .box-switch { width: min(72vw, 320px); height: 42svh; min-height: 260px; }
   .hover-note { right: 4px; bottom: 15%; }
-  .runner { z-index: 1; width: 66px; height: 99px; opacity: .9; }
+  .runner { z-index: 1; width: 52px; height: 78px; opacity: .94; }
   .product-page { overflow-x: hidden; overflow-y: auto; }
   .product-layout, .utility-wrap, .checkout-layout { display: block; }
   .product-layout > .product-stage {
