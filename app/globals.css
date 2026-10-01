@@ -439,7 +439,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .order-summary { align-items: flex-start; flex-direction: column; }
   .consent span { font-size: 10px !important; line-height: 1.4; }
   .story-hero { padding: 110px 16px 42px; }
-  .story-hero h1 { font-size: 24vw; }
+  .story-hero h1 { font-size: clamp(43px, 15vw, 70px); }
   .story-hero img { width: 130vw; right: -64vw; top: 16%; }
   .three-beats { display: block; }
   .three-beats article { min-height: 58svh; border-right: 0; border-bottom: 1px solid #777; padding: 28px 16px; }

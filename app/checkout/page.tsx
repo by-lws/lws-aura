@@ -24,7 +24,7 @@ export default function CheckoutPage() {
           <h1 id="checkout-title">ОФОРМЛЕНИЕ</h1>
           <p className="checkout-note">
             {salesOpen
-              ? 'Оплата завершает финальную настройку: данные заказа и чеки должны храниться надёжно.'
+              ? 'Предзаказ уже открыт. Онлайн-оплата появится после проверки отдельного магазина LWS Aura в ЮKassa.'
               : 'Продажи ещё не открыты.'}
           </p>
           <LaunchCountdown className="checkout-countdown" />
@@ -52,7 +52,7 @@ export default function CheckoutPage() {
               {salesOpen ? 'ОПЛАТА ГОТОВИТСЯ' : 'ОПЛАТА НЕДОСТУПНА'}
             </button>
           </fieldset>
-          {!checkoutAvailable && <p className="form-launch-note">Поля откроются одновременно с готовностью оплаты. Корзина сохранится на этом устройстве.</p>}
+          {!checkoutAvailable && <p className="form-launch-note">Поля откроются после подключения оплаты и защищённого хранения заказов. Корзина сохранится на этом устройстве.</p>}
           {count === 0 && <Link className="quiet-link" href="/product">СНАЧАЛА ВЫБРАТЬ АРОМАТ →</Link>}
         </form>
       </section>
