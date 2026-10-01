@@ -150,7 +150,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .box-empty {
   opacity: 0;
-  transform: scale(1.07, 1.03);
+  transform: translate(0.46%, 0.44%) scale(1.073, 1.034);
   mix-blend-mode: normal;
   -webkit-mask-image: radial-gradient(circle clamp(82px, 11vw, 140px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
   mask-image: radial-gradient(circle clamp(82px, 11vw, 140px) at var(--reveal-x, 50%) var(--reveal-y, 50%), #000 0 46%, transparent 100%);
