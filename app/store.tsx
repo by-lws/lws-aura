@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 export type CartLine = { size: string; quantity: number };
@@ -69,15 +70,26 @@ export function useStore() {
 
 export function Header({ light = false }: { light?: boolean }) {
   const { count } = useStore();
+  const pathname = usePathname();
+  const current = (href: string) => (
+    pathname === href || (href === '/cart' && pathname === '/checkout')
+  ) ? 'page' : undefined;
+
   return (
     <header className={`masthead ${light ? 'masthead-light' : ''}`}>
       <Link className="wordmark" href="/" aria-label="LWS Aura — на главную">
         LWS <span>AURA</span>
       </Link>
-      <nav aria-label="Основная навигация">
-        <Link href="/product">АРОМАТ</Link>
-        <Link href="/story">ИСТОРИЯ</Link>
-        <Link href="/cart">КОРЗИНА · {count}</Link>
+      <nav className="desktop-nav" aria-label="Основная навигация">
+        <Link href="/product" aria-current={current('/product')}>АРОМАТ</Link>
+        <Link href="/story" aria-current={current('/story')}>ИСТОРИЯ</Link>
+        <Link href="/cart" aria-current={current('/cart')}>КОРЗИНА · {count}</Link>
+      </nav>
+      <nav className="mobile-nav" aria-label="Мобильная навигация">
+        <Link href="/" aria-current={current('/')}><small>01</small>ГЛАВНАЯ</Link>
+        <Link href="/product" aria-current={current('/product')}><small>02</small>АРОМАТ</Link>
+        <Link href="/story" aria-current={current('/story')}><small>03</small>ИСТОРИЯ</Link>
+        <Link href="/cart" aria-current={current('/cart')}><small>{String(count).padStart(2, '0')}</small>КОРЗИНА</Link>
       </nav>
     </header>
   );
