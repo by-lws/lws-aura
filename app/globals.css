@@ -88,6 +88,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .primary-link span { transition: transform .25s ease; }
 .primary-link:hover span { transform: translate(5px, 5px); }
 
+.launch-countdown {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  border-top: 1px solid currentColor;
+  padding-top: 8px;
+}
+.launch-countdown-title, .launch-open {
+  margin: 0;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+.launch-countdown-numbers {
+  display: flex;
+  gap: 15px;
+  margin-top: 7px;
+}
+.launch-countdown-numbers span { display: grid; gap: 2px; }
+.launch-countdown-numbers b { font-size: 18px; line-height: 1; letter-spacing: -.04em; }
+.launch-countdown-numbers small { font-size: 6px; letter-spacing: .14em; }
+.hero-countdown { margin: 0 0 20px; }
+
 .product-stage {
   position: relative;
   display: grid;
@@ -206,6 +229,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .size-picker button + button { margin-left: -1px; }
 .size-picker button.active { background: var(--ink); color: #fff; }
 .preorder-price { margin: 0 0 12px; color: var(--red); font-size: 9px; letter-spacing: .14em; font-weight: 700; }
+.product-countdown { margin: 0 0 17px; color: var(--red); }
 .black-button, .white-button {
   display: inline-flex;
   min-height: 46px;
@@ -275,9 +299,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .cart-next { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-top: 44px; }
 .cart-next p { margin: 0; font-size: 10px; letter-spacing: .12em; }
 .cart-next p span { color: #666; font: italic 13px/1.4 Georgia, serif; letter-spacing: 0; }
+.cart-countdown { margin-right: auto; }
 
 .checkout-note { max-width: 310px; margin: 30px 0 0; font: italic 15px/1.45 Georgia, serif; }
+.checkout-countdown { margin-top: 30px; }
 .checkout-form { padding: clamp(54px, 9vh, 94px) clamp(28px, 6vw, 94px); }
+.checkout-form fieldset { min-width: 0; margin: 0; border: 0; padding: 0; }
+.checkout-form fieldset:disabled { opacity: .55; }
 .checkout-form > label, .field-row label { display: flex; flex-direction: column; gap: 7px; flex: 1; }
 .checkout-form label > span { font-size: 8px; letter-spacing: .16em; }
 .checkout-form input:not([type='checkbox']), .checkout-form textarea { width: 100%; border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; padding: 11px 0; background: transparent; color: var(--ink); font: 16px Arial, sans-serif; resize: vertical; }
@@ -287,6 +315,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .consent { flex-direction: row !important; align-items: flex-start; margin: 18px 0 !important; }
 .consent input { accent-color: var(--ink); }
 .checkout-form .quiet-link { margin-top: 16px; }
+.form-launch-note { max-width: 360px; margin: 18px 0 0; font: italic 13px/1.45 Georgia, serif; }
 .success-state { min-height: calc(100svh - 68px); padding: clamp(80px, 16vh, 160px) 8vw; }
 .success-state h1 { margin: 22px 0; font-size: clamp(92px, 16vw, 230px); line-height: .7; letter-spacing: -.1em; }
 .success-state > p:not(.eyebrow) { max-width: 440px; margin: 36px 0; font: italic 16px/1.5 Georgia, serif; }
@@ -339,6 +368,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .hero h1 { font-size: clamp(64px, 22vw, 96px); line-height: .76; }
   .hero-line { margin: 20px 0 18px; }
   .primary-link { min-height: 44px; align-items: center; gap: 24px; font-size: 11px; }
+  .hero-countdown { margin-bottom: 18px; }
+  .launch-countdown-numbers { gap: 12px; }
   .product-stage {
     width: 100%;
     height: 42svh;
@@ -375,6 +406,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .cart-line .quantity { grid-column: 2; justify-self: start; }
   .cart-line .remove { grid-column: 2; justify-self: start; }
   .cart-next { align-items: stretch; flex-direction: column; }
+  .cart-countdown { margin-right: 0; }
   .cart-next .black-button { width: 100%; }
   .field-row { display: block; margin: 0; }
   .field-row label { margin: 28px 0; }

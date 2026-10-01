@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { LaunchCountdown } from '../launch-countdown';
+import { productSizes } from '../launch';
 import { BoxSwitch, Header, RunawayBottle, useStore } from '../store';
-
-const sizes = ['30 мл', '50 мл', '100 мл'];
 
 export default function ProductPage() {
   const [size, setSize] = useState('50 мл');
@@ -35,14 +35,14 @@ export default function ProductPage() {
 
           <fieldset className="size-picker">
             <legend>ОБЪЁМ</legend>
-            {sizes.map((item) => (
+            {productSizes.map((item) => (
               <button key={item} type="button" className={size === item ? 'active' : ''} onClick={() => setSize(item)}>
                 {item}
               </button>
             ))}
           </fieldset>
 
-          <p className="preorder-price">ПРЕДЗАКАЗ · ЦЕНА ПЕРВОГО ВЫПУСКА</p>
+          <LaunchCountdown className="product-countdown" />
           <button className="black-button" type="button" onClick={addProduct}>
             {added ? 'ДОБАВЛЕНО ✓' : 'ДОБАВИТЬ В КОРЗИНУ'}
           </button>

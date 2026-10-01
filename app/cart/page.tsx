@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { LaunchCountdown } from '../launch-countdown';
 import { Header, useStore } from '../store';
 
 export default function CartPage() {
@@ -38,7 +39,7 @@ export default function CartPage() {
                 ))}
               </div>
               <div className="cart-next">
-                <p>ПРЕДЗАКАЗ<br /><span>Оплата будет подключена позже</span></p>
+                <LaunchCountdown className="cart-countdown" />
                 <Link className="black-button" href="/checkout">ОФОРМИТЬ ЗАКАЗ</Link>
               </div>
             </>

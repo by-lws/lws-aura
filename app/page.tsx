@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { LaunchCountdown } from './launch-countdown';
 import { BoxSwitch, Header, RunawayBottle } from './store';
 
 export default function Home() {
@@ -10,8 +11,9 @@ export default function Home() {
           <p className="issue">ПЕРВЫЙ ВЫПУСК / 001</p>
           <h1 id="hero-title">LOVE<br />WAR<br />SECRET</h1>
           <p className="hero-line">Сначала обжигает.<br />Потом остаётся с тобой.</p>
+          <LaunchCountdown className="hero-countdown" />
           <Link className="primary-link" href="/product">
-            ВОЙТИ В ПРЕДЗАКАЗ <span aria-hidden="true">↘</span>
+            СМОТРЕТЬ АРОМАТ <span aria-hidden="true">↘</span>
           </Link>
         </div>
         <BoxSwitch />
