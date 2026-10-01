@@ -97,9 +97,43 @@ export function Header({ light = false }: { light?: boolean }) {
 }
 
 export function BoxSwitch({ compact = false }: { compact?: boolean }) {
+  const [revealed, setRevealed] = useState(false);
+  const moveReveal = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty('--reveal-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+    event.currentTarget.style.setProperty('--reveal-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+  };
+
   return (
     <div className={`product-stage ${compact ? 'product-stage-compact' : ''}`}>
-      <button className="box-switch" type="button" aria-label="Сменить вид упаковки">
+      <button
+        className="box-switch"
+        type="button"
+        aria-label="Проявить пустую коробку"
+        aria-pressed={revealed}
+        data-revealed={revealed}
+        onPointerEnter={(event) => {
+          moveReveal(event);
+          if (event.pointerType !== 'touch') setRevealed(true);
+        }}
+        onPointerMove={moveReveal}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== 'touch') setRevealed(false);
+        }}
+        onPointerDown={(event) => {
+          if (event.pointerType === 'touch') {
+            moveReveal(event);
+            setRevealed((current) => !current);
+          }
+        }}
+        onClick={(event) => {
+          if (event.detail === 0) {
+            event.currentTarget.style.setProperty('--reveal-x', '50%');
+            event.currentTarget.style.setProperty('--reveal-y', '50%');
+            setRevealed((current) => !current);
+          }
+        }}
+      >
         <img className="box-image box-filled" src="/assets/box-filled.png" alt="LoveWarSecret — флакон в коробке с малиной и перцем" />
         <img className="box-image box-empty" src="/assets/box-empty.png" alt="" />
       </button>
