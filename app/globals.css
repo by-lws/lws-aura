@@ -425,7 +425,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .utility-heading { padding: 70px 16px 30px; border-right: 0; border-bottom: 1px solid var(--ink); }
   .utility-heading h1 { font-size: clamp(54px, 17vw, 76px); }
   .cart-page .utility-heading h1 { font-size: clamp(44px, 12.5vw, 62px); }
-  .checkout-layout .utility-heading h1 { font-size: clamp(42px, 15vw, 64px); overflow-wrap: normal; }
+  .checkout-layout .utility-heading h1 { font-size: clamp(40px, 12.5vw, 72px); white-space: nowrap; overflow-wrap: normal; }
   .cart-content, .checkout-form { padding: 38px 16px 72px; }
   .cart-line { grid-template-columns: 62px minmax(0, 1fr); gap: 12px; }
   .cart-line img { width: 56px; height: 82px; }
