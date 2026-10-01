@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import type { ProductSize } from './launch';
 
-export type CartLine = { size: string; quantity: number };
+export type CartLine = { size: ProductSize; quantity: number };
 
 export function useStore() {
   const [lines, setLines] = useState<CartLine[]>([]);
@@ -47,7 +48,7 @@ export function useStore() {
     window.dispatchEvent(new CustomEvent('lws-cart', { detail: next }));
   };
 
-  const add = (size: string) => {
+  const add = (size: ProductSize) => {
     commit((current) => {
       const existing = current.find((line) => line.size === size);
       return existing
@@ -56,13 +57,13 @@ export function useStore() {
     });
   };
 
-  const setQuantity = (size: string, quantity: number) => {
+  const setQuantity = (size: ProductSize, quantity: number) => {
     commit((current) => quantity < 1
       ? current.filter((line) => line.size !== size)
       : current.map((line) => line.size === size ? { ...line, quantity } : line));
   };
 
-  const remove = (size: string) => commit((current) => current.filter((line) => line.size !== size));
+  const remove = (size: ProductSize) => commit((current) => current.filter((line) => line.size !== size));
   const count = lines.reduce((sum, line) => sum + line.quantity, 0);
 
   return { lines, count, add, setQuantity, remove };

@@ -1,24 +1,14 @@
-import { areSalesOpen, productSizes, type ProductSize } from '../../../launch';
+import { areSalesOpen, productSizes, productVariants, type ProductSize } from '../../../launch';
 import { YooKassaConfigurationError, YooKassaRequestError, createYooKassaPayment } from '../../../lib/yookassa';
 
 type CartLine = { size: ProductSize; quantity: number };
-
-const sizePriceEnvironment: Record<ProductSize, string> = {
-  '30 мл': 'LWS_PRICE_30_RUB',
-  '50 мл': 'LWS_PRICE_50_RUB',
-  '100 мл': 'LWS_PRICE_100_RUB',
-};
 
 function json(body: Record<string, string>, status: number) {
   return Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
 function priceInKopecks(size: ProductSize) {
-  const price = process.env[sizePriceEnvironment[size]];
-  if (!price || !/^\d{1,7}(?:[.,]\d{1,2})?$/.test(price)) return null;
-
-  const value = Math.round(Number(price.replace(',', '.')) * 100);
-  return Number.isSafeInteger(value) && value > 0 ? value : null;
+  return productVariants[size].price * 100;
 }
 
 function parseCart(body: unknown): CartLine[] | null {
@@ -59,7 +49,6 @@ export async function POST(request: Request) {
   let total = 0;
   for (const line of lines) {
     const price = priceInKopecks(line.size);
-    if (!price) return json({ error: 'Цены ещё не заполнены. Оплата недоступна.' }, 503);
     total += price * line.quantity;
   }
 

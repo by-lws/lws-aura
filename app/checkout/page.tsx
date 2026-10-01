@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { FormEvent } from 'react';
 import { LaunchCountdown, useSalesOpen } from '../launch-countdown';
+import { formatPrice, productVariants } from '../launch';
 import { Header, useStore } from '../store';
 
 export default function CheckoutPage() {
   const { lines, count } = useStore();
   const salesOpen = useSalesOpen();
+  const total = lines.reduce((sum, line) => sum + productVariants[line.size].price * line.quantity, 0);
   // Do not allow an order to reach payment before delivery data, receipts and payment webhooks have a durable backend.
   const paymentConfigured = false;
   const checkoutAvailable = salesOpen && paymentConfigured;
@@ -42,8 +44,8 @@ export default function CheckoutPage() {
             <label><span>КОММЕНТАРИЙ</span><textarea name="comment" rows={3} /></label>
 
             <div className="order-summary">
-              <span>LOVEWARSECRET</span>
-              <span>{lines.length ? lines.map((line) => `${line.size} × ${line.quantity}`).join(' / ') : 'КОРЗИНА ПУСТА'}</span>
+              <div><span>LOVEWARSECRET</span><span>{lines.length ? lines.map((line) => `${line.size} × ${line.quantity}`).join(' / ') : 'КОРЗИНА ПУСТА'}</span></div>
+              {lines.length > 0 && <b>{formatPrice(total)}</b>}
             </div>
             <label className="consent"><input type="checkbox" required /><span>Я согласен на обработку данных для оформления заказа</span></label>
             <button className="black-button" type="submit" disabled={!checkoutAvailable || count === 0}>

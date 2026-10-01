@@ -3,13 +3,14 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { LaunchCountdown } from '../launch-countdown';
-import { productSizes } from '../launch';
+import { formatPrice, productSizes, productVariants, type ProductSize } from '../launch';
 import { BoxSwitch, Header, RunawayBottle, useStore } from '../store';
 
 export default function ProductPage() {
-  const [size, setSize] = useState('50 мл');
+  const [size, setSize] = useState<ProductSize>('50 мл');
   const [added, setAdded] = useState(false);
   const { add } = useStore();
+  const selectedVariant = productVariants[size];
 
   const addProduct = () => {
     add(size);
@@ -42,6 +43,10 @@ export default function ProductPage() {
             ))}
           </fieldset>
 
+          <div className="product-price-block" aria-live="polite">
+            <p className="preorder-price">{selectedVariant.role}</p>
+            <p className="product-price">{formatPrice(selectedVariant.price)}</p>
+          </div>
           <LaunchCountdown className="product-countdown" />
           <button className="black-button" type="button" onClick={addProduct}>
             {added ? 'ДОБАВЛЕНО ✓' : 'ДОБАВИТЬ В КОРЗИНУ'}

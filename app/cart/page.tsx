@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { LaunchCountdown } from '../launch-countdown';
+import { formatPrice, productVariants } from '../launch';
 import { Header, useStore } from '../store';
 
 export default function CartPage() {
   const { lines, count, setQuantity, remove } = useStore();
+  const total = lines.reduce((sum, line) => sum + productVariants[line.size].price * line.quantity, 0);
 
   return (
     <main className="inner utility-page">
@@ -28,7 +30,7 @@ export default function CartPage() {
                 {lines.map((line) => (
                   <article className="cart-line" key={line.size}>
                     <img src="/assets/box-filled.png" alt="" />
-                    <div><b>LOVEWARSECRET</b><span>EAU DE PARFUM / {line.size}</span></div>
+                    <div><b>LOVEWARSECRET</b><span>EAU DE PARFUM / {line.size}</span><strong>{formatPrice(productVariants[line.size].price)}</strong></div>
                     <div className="quantity" aria-label={`Количество, ${line.size}`}>
                       <button onClick={() => setQuantity(line.size, line.quantity - 1)} aria-label="Уменьшить">−</button>
                       <span>{line.quantity}</span>
@@ -40,6 +42,7 @@ export default function CartPage() {
               </div>
               <div className="cart-next">
                 <LaunchCountdown className="cart-countdown" />
+                <p className="cart-total">ИТОГО <b>{formatPrice(total)}</b></p>
                 <Link className="black-button" href="/checkout">ОФОРМИТЬ ЗАКАЗ</Link>
               </div>
             </>
