@@ -29,7 +29,10 @@ export default function CartPage() {
               <div className="cart-lines">
                 {lines.map((line) => (
                   <article className="cart-line" key={line.size}>
-                    <img src="/assets/box-filled.png" alt="" />
+                    <picture>
+                      <source srcSet="/assets/box-filled.avif" type="image/avif" />
+                      <img src="/assets/box-filled.png" alt="" loading="lazy" />
+                    </picture>
                     <div><b>LOVEWARSECRET</b><span>EAU DE PARFUM / {line.size}</span><strong>{formatPrice(productVariants[line.size].price)}</strong></div>
                     <div className="quantity" aria-label={`Количество, ${line.size}`}>
                       <button onClick={() => setQuantity(line.size, line.quantity - 1)} aria-label="Уменьшить">−</button>

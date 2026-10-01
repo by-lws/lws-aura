@@ -134,8 +134,14 @@ export function BoxSwitch({ compact = false }: { compact?: boolean }) {
           }
         }}
       >
-        <img className="box-image box-filled" src="/assets/box-filled.png" alt="LoveWarSecret — флакон в коробке с малиной и перцем" />
-        <img className="box-image box-empty" src="/assets/box-empty.png" alt="" />
+        <picture>
+          <source srcSet="/assets/box-filled.avif" type="image/avif" />
+          <img className="box-image box-filled" src="/assets/box-filled.png" alt="LoveWarSecret — флакон в коробке с малиной и перцем" fetchPriority="high" />
+        </picture>
+        <picture>
+          <source srcSet="/assets/box-empty.avif" type="image/avif" />
+          <img className="box-image box-empty" src="/assets/box-empty.png" alt="" />
+        </picture>
       </button>
       <span className="hover-note">НАВЕДИ / КОСНИСЬ</span>
     </div>
@@ -188,7 +194,10 @@ export function RunawayBottle() {
 
   return (
     <div ref={runner} className="runner" aria-hidden="true">
-      <img className="runner-bob" src="/assets/bottle-cutout.png" alt="" />
+      <picture>
+        <source srcSet="/assets/bottle-cutout.avif" type="image/avif" />
+        <img className="runner-bob" src="/assets/bottle-cutout.png" alt="" />
+      </picture>
     </div>
   );
 }

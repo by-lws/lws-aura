@@ -17,7 +17,10 @@ export default function StoryPage() {
         <p className="eyebrow">LWS / НАПРАВЛЕНИЕ 01</p>
         <h1>БОЛЬ<br />И НАДЕЖДА</h1>
         <p>Аромат о моменте,<br />когда правда остаётся с тобой.</p>
-        <img src="/assets/cross.png" alt="" />
+        <picture>
+          <source srcSet="/assets/cross.avif" type="image/avif" />
+          <img src="/assets/cross.png" alt="" loading="lazy" />
+        </picture>
       </section>
 
       <section className="three-beats" aria-label="Три аккорда LoveWarSecret">

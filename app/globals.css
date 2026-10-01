@@ -27,6 +27,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   background:
     linear-gradient(90deg, rgba(255,255,255,.72), rgba(243,242,238,.93) 46%, rgba(220,220,216,.86)),
     url('/assets/drip-wall.png') center / cover;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.72), rgba(243,242,238,.93) 46%, rgba(220,220,216,.86)),
+    image-set(url('/assets/drip-wall.avif') type('image/avif'), url('/assets/drip-wall.png') type('image/png')) center / cover;
 }
 .home::before {
   content: '';
@@ -35,6 +38,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   z-index: -1;
   height: clamp(150px, 25vw, 300px);
   background: url('/assets/drip-strip.png') top center / 120% 100% no-repeat;
+  background: image-set(url('/assets/drip-strip.avif') type('image/avif'), url('/assets/drip-strip.png') type('image/png')) top center / 120% 100% no-repeat;
   opacity: .98;
   pointer-events: none;
 }
@@ -45,6 +49,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   z-index: 0;
   height: clamp(120px, 17vw, 210px);
   background: url('/assets/drip-strip.png') top center / 100% 100% no-repeat;
+  background: image-set(url('/assets/drip-strip.avif') type('image/avif'), url('/assets/drip-strip.png') type('image/png')) top center / 100% 100% no-repeat;
   pointer-events: none;
 }
 .inner > section { position: relative; z-index: 1; }
@@ -177,6 +182,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   will-change: transform;
   transition: transform .72s cubic-bezier(.15,.85,.25,1);
 }
+.runner picture { display: block; width: 100%; height: 100%; }
 .runner-bob {
   display: block;
   width: 100%;
