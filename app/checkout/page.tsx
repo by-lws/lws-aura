@@ -8,6 +8,9 @@ import { Header, useStore } from '../store';
 export default function CheckoutPage() {
   const { lines, count } = useStore();
   const salesOpen = useSalesOpen();
+  // Do not allow an order to reach payment before delivery data, receipts and payment webhooks have a durable backend.
+  const paymentConfigured = false;
+  const checkoutAvailable = salesOpen && paymentConfigured;
   const preventSubmit = (event: FormEvent<HTMLFormElement>) => event.preventDefault();
 
   return (
@@ -18,12 +21,14 @@ export default function CheckoutPage() {
           <p className="eyebrow">ПОСЛЕДНИЙ ШАГ</p>
           <h1 id="checkout-title">ОФОРМЛЕНИЕ</h1>
           <p className="checkout-note">
-            {salesOpen ? 'Оформление заказа открыто.' : 'Продажи ещё не открыты. Сохрани аромат в корзине — оплата станет доступна в день запуска.'}
+            {salesOpen
+              ? 'Оплата завершает финальную настройку: данные заказа и чеки должны храниться надёжно.'
+              : 'Продажи ещё не открыты. Сохрани аромат в корзине — оплата станет доступна в день запуска.'}
           </p>
           <LaunchCountdown className="checkout-countdown" />
         </div>
         <form className="checkout-form" onSubmit={preventSubmit}>
-          <fieldset disabled={!salesOpen}>
+          <fieldset disabled={!checkoutAvailable}>
             <label><span>ИМЯ И ФАМИЛИЯ *</span><input name="name" autoComplete="name" required /></label>
             <div className="field-row">
               <label><span>ТЕЛЕФОН *</span><input name="phone" type="tel" autoComplete="tel" required /></label>
@@ -41,11 +46,11 @@ export default function CheckoutPage() {
               <span>{lines.length ? lines.map((line) => `${line.size} × ${line.quantity}`).join(' / ') : 'КОРЗИНА ПУСТА'}</span>
             </div>
             <label className="consent"><input type="checkbox" required /><span>Я согласен на обработку данных для оформления заказа</span></label>
-            <button className="black-button" type="submit" disabled={!salesOpen || count === 0}>
-              {salesOpen ? 'ПЕРЕЙТИ К ОПЛАТЕ' : 'ОПЛАТА ОТКРОЕТСЯ 20.02.2027'}
+            <button className="black-button" type="submit" disabled={!checkoutAvailable || count === 0}>
+              {salesOpen ? 'ОПЛАТА ГОТОВИТСЯ' : 'ОПЛАТА ОТКРОЕТСЯ 20.02.2027'}
             </button>
           </fieldset>
-          {!salesOpen && <p className="form-launch-note">Поля откроются одновременно с продажами. Корзина сохранится на этом устройстве.</p>}
+          {!checkoutAvailable && <p className="form-launch-note">Поля откроются одновременно с готовностью оплаты. Корзина сохранится на этом устройстве.</p>}
           {count === 0 && <Link className="quiet-link" href="/product">СНАЧАЛА ВЫБРАТЬ АРОМАТ →</Link>}
         </form>
       </section>
