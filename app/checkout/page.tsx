@@ -25,7 +25,7 @@ export default function CheckoutPage() {
           <p className="checkout-note">
             {salesOpen
               ? 'Оплата завершает финальную настройку: данные заказа и чеки должны храниться надёжно.'
-              : 'Продажи ещё не открыты. Сохрани аромат в корзине — оплата станет доступна в день запуска.'}
+              : 'Продажи ещё не открыты.'}
           </p>
           <LaunchCountdown className="checkout-countdown" />
         </div>
@@ -49,7 +49,7 @@ export default function CheckoutPage() {
             </div>
             <label className="consent"><input type="checkbox" required /><span>Я согласен на обработку данных для оформления заказа</span></label>
             <button className="black-button" type="submit" disabled={!checkoutAvailable || count === 0}>
-              {salesOpen ? 'ОПЛАТА ГОТОВИТСЯ' : 'ОПЛАТА ОТКРОЕТСЯ 20.02.2027'}
+              {salesOpen ? 'ОПЛАТА ГОТОВИТСЯ' : 'ОПЛАТА НЕДОСТУПНА'}
             </button>
           </fieldset>
           {!checkoutAvailable && <p className="form-launch-note">Поля откроются одновременно с готовностью оплаты. Корзина сохранится на этом устройстве.</p>}
