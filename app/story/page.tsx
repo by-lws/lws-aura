@@ -5,8 +5,8 @@ import { Header, RunawayBottle } from '../store';
 export const metadata: Metadata = {
   title: 'История',
   description: 'LoveWarSecret — боль и надежда, рассказанные ароматом.',
-  openGraph: { title: 'LoveWarSecret — история', description: 'Боль и надежда, рассказанные ароматом.', images: [] },
-  twitter: { title: 'LoveWarSecret — история', description: 'Боль и надежда, рассказанные ароматом.', images: [] },
+  openGraph: { title: 'LoveWarSecret — история', description: 'Боль и надежда, рассказанные ароматом.', images: [{ url: '/brand/preview.png', width: 1200, height: 630, alt: 'Aura by LWS — фирменный знак LWS' }] },
+  twitter: { title: 'LoveWarSecret — история', description: 'Боль и надежда, рассказанные ароматом.', images: ['/brand/preview.png'] },
 };
 
 export default function StoryPage() {
